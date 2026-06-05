@@ -48,6 +48,32 @@ class PresentationView {
             if (e.key === 'ArrowRight' || e.key === ' ') handleNext();
             if (e.key === 'ArrowLeft') handlePrev();
         });
+
+        // Soporte para gestos táctiles (swipe)
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].screenX;
+            const touchEndY = e.changedTouches[0].screenY;
+            
+            const diffX = touchStartX - touchEndX;
+            const diffY = touchStartY - touchEndY;
+            
+            // Detectar swipe horizontal: debe ser mayor el mov horizontal que el vertical y superar 50px
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                if (diffX > 0) {
+                    handleNext(); // Swipe izquierda
+                } else {
+                    handlePrev(); // Swipe derecha
+                }
+            }
+        }, { passive: true });
     }
 
     updateSlidePosition(index) {
