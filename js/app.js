@@ -78,6 +78,10 @@ class PresentationController {
     init() {
         this.view.bindEvents(this.handleNext, this.handlePrev);
         this.view.updateUI(this.model.getSlideIndex(), this.model.getTotalSlides());
+        
+        window.addEventListener('resize', () => {
+            this.updateView();
+        });
     }
 
     handleNext() {

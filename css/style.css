@@ -152,8 +152,8 @@ tr:nth-child(even) { background: #f1f5f9; }
     .section-title-layout h1 { font-size: 38px; }
     .subtitle { font-size: 18px; }
     
-    .two-column { grid-template-columns: 1fr; gap: 25px; }
-    .tiled-content { grid-template-columns: 1fr; }
+    .two-column { grid-template-columns: 1fr !important; gap: 25px !important; }
+    .tiled-content { grid-template-columns: 1fr !important; }
     
     p, li, td { font-size: 16px; }
     .tile h3 { font-size: 18px; }
